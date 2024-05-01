@@ -7,8 +7,34 @@ on:
     types: [opened, synchronize]
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: macos-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint
+        run: pnpm lint
+
   build:
-    name: Build, Lint and Test
+    name: Build and Test
     timeout-minutes: 15
     runs-on: macos-latest
 
@@ -34,6 +60,3 @@ jobs:
 
       - name: Build
         run: pnpm build
-
-      - name: Lint
-        run: pnpm lint
