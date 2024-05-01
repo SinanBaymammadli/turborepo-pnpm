@@ -8,9 +8,9 @@ on:
 
 jobs:
   build:
-    name: Build, Lint and Test
+    name: Lint, Build and Test
     timeout-minutes: 15
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: Check out code
@@ -32,8 +32,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
-        run: pnpm build
-
       - name: Lint
         run: pnpm lint
+
+      - name: Build
+        run: pnpm build
