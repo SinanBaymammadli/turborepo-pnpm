@@ -2,9 +2,9 @@
   "name": "turborepo-pnpm",
   "private": true,
   "scripts": {
-    "build": "turbo build",
+    "build": "turbo build --cache-dir=.turbo",
     "dev": "turbo dev",
-    "lint": "turbo lint",
+    "lint": "turbo lint --cache-dir=.turbo",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
